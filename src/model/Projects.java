@@ -134,11 +134,11 @@ public class Projects {
      * This method is used to approve a capsule
      * @param identifier is the identifier of the capsule
      */
-    public void aproveCapsule(String identifier){
+    public void aproveCapsule(String identifier, String aprovationDate){
         for (int i = 0; i < capsule.length; i++){
             if (capsule[i].getIdentifier().equals(identifier)){
                 capsule[i].setStatus("Aproved");
-                print("The capsule has been aproved succesfully");
+                print("The capsule has been aproved succesfully" +" with the url " + "www.capsule.com/" + capsule[i].getIdentifier() + ".html  on " + aprovationDate);
             } else {
                 print("The capsule has not been found");
             }
@@ -154,7 +154,7 @@ public class Projects {
             if (capsule[i].getIdentifier().equals(identifier)){
                 if (capsule[i].getStatus().equals("Aproved")){
                     capsule[i].setStatus("Published");
-                    print("The capsule has been published succesfully" +" with the url " + "www.capsule.com/" + capsule[i].getIdentifier() + ".html");
+                    print("The capsule has been published succesfully");
                 } else {
                     print("The capsule has not been aproved yet");
                 }
