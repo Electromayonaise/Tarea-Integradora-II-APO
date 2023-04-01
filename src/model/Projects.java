@@ -132,7 +132,7 @@ public class Projects {
             if (Capsules[s][i]!=null){
                 if (Capsules[s][i].getIdentifier().equals(identifier)){
                     Capsules[s][i].setStatus("Aproved");
-                    Utils.print("The capsule has been aproved succesfully on" + aprovationDate);
+                    Utils.print("The capsule has been aproved succesfully on " + aprovationDate);
                 } else {
                     Utils.print("The capsule has not been found");
                 }
