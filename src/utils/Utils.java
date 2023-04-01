@@ -37,5 +37,15 @@ public class Utils {
         }
         return input.nextDouble();
       }
+
+    public static int validateStageInput(){
+        // Check if the input is a valid stage
+        int stage = validateIntInput();
+        while (stage < 1 || stage > 5) {
+            print("Enter a valid stage");
+            stage = validateIntInput();
+        }
+        return stage;
+    }
     
 }

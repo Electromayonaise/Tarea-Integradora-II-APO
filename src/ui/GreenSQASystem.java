@@ -44,40 +44,7 @@ public class GreenSQASystem {
                 // each stage has a planned date for the begining and end, and a real date for the begining and end. For asigning the planned dates, the user must enter the 
                 // number of months that each stage will take (array of 6 positions, each position is a stage, and the value is the number of months that the stage will take)
                 case 1:
-                    
-                    do { 
-                        Utils.print("Please enter the name of the project");
-                        proyectName = Utils.input.next();
-                        Utils.print("Please enter the name of the client");
-                        String clientName = Utils.input.next();
-                        Utils.print("Please enter the date planed for the beginning of the project (YYYY/MM/DD)");
-                        String datePlanedBegin = Utils.input.next();
-                        Utils.print("Please enter the date planed for the end of the proyect (YYYY/MM/DD)");
-                        String datePlanedEnd = Utils.input.next();
-                        Utils.print("Please enter the value of the budget");
-                        double budget = Utils.validateDoubleInput();
-                        Utils.print("Please enter the number of managers from the client side");
-                        int clientManagers = Utils.validateIntInput();
-                        Utils.print("Please enter the number of managers from the company side");
-                        int companyManagers = Utils.validateIntInput();
-                        // Create the arrays for the names and phone numbers of the managers from both sides
-                        greenController[projectCounter] = new Green(clientManagers, companyManagers, proyectName, clientName, datePlanedBegin, datePlanedEnd, budget, projectCounter);
-                        Utils.print("Do you want to create another proyect? (Y/N)");
-                        answer = Utils.input.next();
-                        answer = answer.toUpperCase();
-                        if (answer.equals("Y")){
-                            projectCounter++;
-                            continue;
-                        } else {
-                            Utils.print("The projects created are:");
-                            for (int j = 0; j <= projectCounter; j++) {
-                                if (greenController[j]!=null){
-                                    Utils.print(greenController[j].getName());
-                                }
-                            }
-                            break;
-                        }
-                    } while (answer.equals("Y")||projectCounter==10);
+                    projectCreation();
                     break;
                 //  Culminate a stage of a proyect: Stage culmination is done by registering the aprovement of the stage by the client, and the real date of the end of the stage. 
                 // The user must enter the name of the proyect, the stage that he wants to culminate, and the real date of the end of the stage, as well as the real date of the beginning of the new stage
@@ -87,10 +54,7 @@ public class GreenSQASystem {
                         Utils.print("There are no proyects to culminate a stage");
                         break;
                     }
-                    Utils.print("Please enter the name of the proyect");
-                    proyectName = Utils.input.next();
-                    String realDateEnd = new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
-                    Green.stageCulmination(proyectName, realDateEnd, projectCounter); 
+                    stageCulmination();
                     break;
                 // Register a capsule: The user must enter the name of the proyect, the stage in which the capsule will be registered, the type of capsule (tecnical, managment, domain, or experiences),
                 // a unique identifier, a description of the capsule, the name of the collaborator who registered the capsule, the date of the capsule, and the situation and lesson learned from the capsule
@@ -102,29 +66,7 @@ public class GreenSQASystem {
                         Utils.print("There are no proyects to register a capsule");
                         break;
                     }
-                    Utils.print("Please enter the name of the proyect");
-                    proyectName = Utils.input.next();
-                    Utils.print("Please enter the stage in which the capsule will be registered");
-                    int stage = Utils.validateIntInput();
-                    if (stage > 6 || stage < 1){
-                        Utils.print("The stage must be between 1 and 6");
-                        break;
-                    }
-                    Green.stageValidation(proyectName, stage, projectCounter);
-                    Utils.print("Please enter the type of capsule (tecnical, managment, domain, or experiences)");
-                    String type = Utils.input.next();
-                    Utils.print("Please enter a unique identifier");
-                    String identifier = Utils.input.next();
-                    Utils.print("Please enter a description of the capsule that contains the kwywords between hashtags (#)");
-                    String description = Utils.validateHashtag();
-                    Utils.print("Please enter the name of the collaborator who registered the capsule");
-                    String collaboratorName = Utils.input.next();
-                    Utils.print("Please enter the post of the collaborator who registered the capsule");
-                    String collaboratorPost = Utils.input.next();
-                    Utils.print("Please enter the situation and lesson learned from the capsule");
-                    String situation = Utils.input.next();
-                    String status="Pending";
-                    Green.registerCapsule(proyectName, stage, type, identifier, description, collaboratorName, collaboratorPost, situation, status, projectCounter);
+                    registerCapsule();
                     break;
                 // Aprove a capsule: The user must enter the name of the proyect, and the unique identifier of the capsule that he wants to aprove, 
                 //then the status of the capsule will change to "Aproved"
@@ -134,13 +76,7 @@ public class GreenSQASystem {
                         Utils.print("There are no proyects to aprove a capsule");
                         break;
                     }
-                    Utils.print("Please enter the name of the proyect");
-                    proyectName = Utils.input.next();
-                    Utils.print("Please enter the unique identifier of the capsule that you want to aprove");
-                    identifier = Utils.input.next();
-                    // Give the identifier to the method aproveCapsule in the class Proyects
-                    String aprovationDate = new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
-                    Green.aproveCapsule(proyectName, identifier, aprovationDate, projectCounter);
+                    capsuleAprobation();
                     break;
                 
                 // Publish a capsule: The user must enter the name of the proyect, and the unique identifier of the capsule that he wants to publish,
@@ -151,12 +87,7 @@ public class GreenSQASystem {
                         Utils.print("There are no proyects to publish a capsule");
                         break;
                     }
-                    Utils.print("Please enter the name of the proyect");
-                    proyectName = Utils.input.next();
-                    Utils.print("Please enter the unique identifier of the capsule that you want to publish");
-                    identifier = Utils.input.next();
-                    // Give the identifier to the method publishCapsule in the class green if the capsule is aproved
-                    Green.publishCapsule(proyectName,identifier, projectCounter);
+                    capsulePublishing();
                     break;
         
                 default:
@@ -177,6 +108,94 @@ public class GreenSQASystem {
             Utils.print("6. Exit");
         }
 
-}
+        public static void projectCreation (){
+            do{
+                Utils.print("Please enter the name of the project");
+                proyectName = Utils.input.next();
+                Utils.print("Please enter the name of the client");
+                String clientName = Utils.input.next();
+                Utils.print("Please enter the date planed for the beginning of the project (YYYY/MM/DD)");
+                String datePlanedBegin = Utils.input.next();
+                Utils.print("Please enter the date planed for the end of the proyect (YYYY/MM/DD)");
+                String datePlanedEnd = Utils.input.next();
+                Utils.print("Please enter the value of the budget");
+                double budget = Utils.validateDoubleInput();
+                Utils.print("Please enter the number of managers from the client side");
+                int clientManagers = Utils.validateIntInput();
+                Utils.print("Please enter the number of managers from the company side");
+                int companyManagers = Utils.validateIntInput();
+                // Create the arrays for the names and phone numbers of the managers from both sides
+                greenController[projectCounter] = new Green(clientManagers, companyManagers, proyectName, clientName, datePlanedBegin, datePlanedEnd, budget, projectCounter);
+                Utils.print("Do you want to create another proyect? (Y/N)");
+                answer = Utils.input.next();
+                answer = answer.toUpperCase();
+                if (answer.equals("Y")){
+                    projectCounter++;
+                    continue;
+                } else {
+                    Utils.print("The projects created are:");
+                    for (int j = 0; j <= projectCounter; j++) {
+                        if (greenController[j]!=null){
+                            Utils.print(greenController[j].getName());
+                        }
+                    }
+                    break;
+                }
+            } while (answer.equals("Y")||projectCounter==10);
+        }
+
+        public static void stageCulmination (){
+            Utils.print("Please enter the name of the proyect");
+            proyectName = Utils.input.next();
+            String realDateEnd = new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
+            Green.stageCulmination(proyectName, realDateEnd, projectCounter); 
+        }
+
+        public static void registerCapsule(){
+            Utils.print("Please enter the name of the proyect");
+            proyectName = Utils.input.next();
+            Utils.print("Please enter the stage in which the capsule will be registered");
+            int stage = Utils.validateStageInput();
+            Green.stageValidation(proyectName, stage, projectCounter);
+            Utils.print("Please enter the type of capsule (tecnical, managment, domain, or experiences)");
+            String type = Utils.input.next();
+            Utils.print("Please enter a unique identifier");
+            String identifier = Utils.input.next();
+            Utils.print("Please enter a description of the capsule");
+            String description = Utils.input.next();
+            Utils.print("Please enter the name of the collaborator who registered the capsule");
+            String collaboratorName = Utils.input.next();
+            Utils.print("Please enter the post of the collaborator who registered the capsule");
+            String collaboratorPost = Utils.input.next();
+            Utils.print("Please enter the situation and lesson learned from the capsule that contains the kwywords between hashtags (#)");
+            String situation = Utils.validateHashtag();
+            String status="Pending";
+            Green.registerCapsule(proyectName, stage, type, identifier, description, collaboratorName, collaboratorPost, situation, status, projectCounter);
+        }
+
+        public static void capsuleAprobation(){
+            Utils.print("Please enter the name of the proyect");
+                    proyectName = Utils.input.next();
+                    Utils.print("Please enter the unique identifier of the capsule that you want to aprove");
+                    String identifier = Utils.input.next();
+                    // Give the identifier to the method aproveCapsule in the class Proyects
+                    String aprovationDate = new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
+                    Green.aproveCapsule(proyectName, identifier, aprovationDate, projectCounter);
+        }
+
+        public static void capsulePublishing(){
+            Utils.print("Please enter the name of the proyect");
+            proyectName = Utils.input.next();
+            Utils.print("Please enter the unique identifier of the capsule that you want to publish");
+            String identifier = Utils.input.next();
+            // Give the identifier to the method publishCapsule in the class green if the capsule is aproved
+            Green.publishCapsule(proyectName,identifier, projectCounter);
+        }
+
+
+    }
+
+
+
 
 
