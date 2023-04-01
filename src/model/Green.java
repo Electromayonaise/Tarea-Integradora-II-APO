@@ -4,8 +4,19 @@ import utils.Utils;
 public class Green {
 
     private String name; 
-    private static Projects[] projectController= new Projects [10] ; // Proyects class
+    private static Projects[] projectController= new Projects [10] ; // Proyects class array
 
+    /*
+     * Constructor for the Green class that creates a new project by calling the constructor of the Projects class
+     * @param clientManagers number of managers from the client side
+     * @param companyManagers number of managers from the company side
+     * @param proyectName name of the project
+     * @param clientName name of the client
+     * @param datePlanedBegin date when the project is planed to begin
+     * @param datePlanedEnd date when the project is planed to end
+     * @param budget budget of the project
+     * @param projectCounter number of projects created
+     */
     public Green( int clientManagers, int companyManagers, String proyectName, String clientName, String datePlanedBegin, String datePlanedEnd, double budget, int projectCounter) {
         this.name = proyectName;
         String[] clientManagerNames = new String[clientManagers];
@@ -30,6 +41,12 @@ public class Green {
         
     }
 
+    /*
+     * Method that calls the stage culmination method from the Projects class after it finds the project
+     * @param proyectName name of the project
+     * @param realDateEnd real date when the project ended
+     * @param projectCounter number of projects created
+     */
     public static void stageCulmination(String proyectName, String realDateEnd, int projectCounter){
         for (int i = 0; i <= projectCounter; i++) {
             if (projectController[i].getName().equals(proyectName)){
@@ -38,6 +55,13 @@ public class Green {
         }
     }
 
+
+    /*
+     * Method that validates the given stage is the current stage or a previous stage
+     * @param proyectName name of the project
+     * @param stage stage to validate
+     * @param projectCounter number of projects created
+     */
     public static void stageValidation(String proyectName, int stage, int projectCounter){
         for (int i = 0; i <= projectCounter; i++) {
             if (projectController[i].getName().equals(proyectName)){
@@ -49,6 +73,19 @@ public class Green {
         }
     }
 
+    /*
+     * Method that calls the register capsule method from the Projects class after it finds the project
+     * @param proyectName name of the project
+     * @param stage stage of the capsule
+     * @param type type of the capsule
+     * @param identifier identifier of the capsule
+     * @param description description of the capsule
+     * @param collaboratorName name of the collaborator
+     * @param collaboratorPost post of the collaborator
+     * @param situation situation of the capsule
+     * @param status status of the capsule
+     * @param projectCounter number of projects created
+     */
     public static void registerCapsule(String proyectName, int stage, String type, String identifier, String description, String collaboratorName, String collaboratorPost, String situation, String status, int projectCounter){
         for (int positionArray = 0; positionArray <= projectCounter; positionArray++) {
             if (projectController[positionArray].getName().equals(proyectName)){
@@ -57,6 +94,13 @@ public class Green {
         }
     }
 
+    /*
+     * Method that calls the approve capsule method from the Projects class after it finds the project
+     * @param proyectName name of the project
+     * @param identifier identifier of the capsule
+     * @param aprovationDate date when the capsule was approved
+     * @param projectCounter number of projects created
+     */
     public static void aproveCapsule(String proyectName, String identifier, String aprovationDate, int projectCounter){
         for (int i = 0; i <= projectCounter; i++) {
             if (projectController[i].getName().equals(proyectName)){
@@ -66,6 +110,12 @@ public class Green {
         }
     }
 
+    /*
+     * Method that calls the publish capsule method from the Projects class after it finds the project
+     * @param proyectName name of the project
+     * @param identifier identifier of the capsule
+     * @param projectCounter number of projects created
+     */
     public static void publishCapsule(String proyectName, String identifier, int projectCounter){
         for (int i = 0; i <= projectCounter; i++) {
             if (projectController[i].getName().equals(proyectName)){
@@ -74,8 +124,6 @@ public class Green {
             }
         }
     }
-
-
 
     public String getName() {
         return name;
