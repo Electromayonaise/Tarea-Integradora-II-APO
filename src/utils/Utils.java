@@ -11,6 +11,16 @@ public class Utils {
         System.out.println(a);
     }
 
+    public static String validateHashtag(){
+        // Check if the input has a initial # and final #
+        String hashtag = input.next();
+        while (hashtag.indexOf("#") != hashtag.lastIndexOf("#")) {
+            print("Enter a valid hashtag");
+            hashtag = input.next();
+        }
+        return hashtag;
+    }
+
     public static int validateIntInput() {
         // Check if the input is an integer
         while (!input.hasNextInt()) {
@@ -19,13 +29,13 @@ public class Utils {
         }
         return input.nextInt();
       }
-    public static int validateDoubleInput() {
+    public static double validateDoubleInput() {
         // Check if the input is a double
         while (!input.hasNextDouble()) {
           input.next();
           print("Enter a valid value");
         }
-        return input.nextInt();
+        return input.nextDouble();
       }
     
 }

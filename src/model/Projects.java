@@ -19,15 +19,7 @@ public class Projects {
     private int positionArray;
     private int activeStage;
 
-    Capsules [] capsule = new Capsules [50];
-
-    /*  
-     * This method is used to abreive the System.out.println() method to print()
-     * @param a is the object that will be printed
-     */
-    static void print(Object a) {
-        System.out.println(a);
-    }
+    Capsules [][] Capsules = new Capsules [6][50];
 
     
     /*
@@ -54,10 +46,10 @@ public class Projects {
         this.companyManagerPhones = companyManagerPhones;
         int [] monthsPerStage = new int [6];
         for (int i = 0; i < monthsPerStage.length; i++){
-            print("Please enter the number of months for the stage " + (i+1));
-            monthsPerStage[i] = Utils.input.nextInt();
+            Utils.print("Please enter the number of months for the stage " + (i+1));
+            monthsPerStage[i] = Utils.validateIntInput();
             }
-        print("The project " + name + " has been created");
+        Utils.print("The project " + name + " has been created");
     }
 
     /*
@@ -69,43 +61,43 @@ public class Projects {
         if (this.stage == 1){
             setStage(2);
             setStageActivation(2);
-            print("The beginning stage was culminated succesfully on " + realDateEnd);
-            print("Enter the real date of the beginning of the analysis stage");
+            Utils.print("The beginning stage was culminated succesfully on " + realDateEnd);
+            Utils.print("Enter the real date of the beginning of the analysis stage");
             realDateBegin = Utils.input.next();
-            print("The active stage is now the analysis stage");
+            Utils.print("The active stage is now the analysis stage");
         } else if (this.stage == 2){
             setStage(3);
             setStageActivation(3);
-            print("The analysis stage was culminated succesfully on " + realDateEnd);
-            print("Enter the real date of the beginning of the design stage");
+            Utils.print("The analysis stage was culminated succesfully on " + realDateEnd);
+            Utils.print("Enter the real date of the beginning of the design stage");
             realDateBegin = Utils.input.next();
-            print("The active stage is now the design stage");
+            Utils.print("The active stage is now the design stage");
         } else if (this.stage == 3){
             setStage(4);
             setStageActivation(4);
-            print("The design stage was culminated succesfully on " + realDateEnd);
-            print("Enter the real date of the beginning of the implementation stage");
+            Utils.print("The design stage was culminated succesfully on " + realDateEnd);
+            Utils.print("Enter the real date of the beginning of the implementation stage");
             realDateBegin = Utils.input.next();
-            print("The active stage is now the implementation stage");
+            Utils.print("The active stage is now the implementation stage");
         } else if (this.stage == 4){
             setStage(5);
             setStageActivation(5);
-            print("The implementation stage was culminated succesfully on " + realDateEnd);
-            print("Enter the real date of the beginning of the closing stage");
+            Utils.print("The implementation stage was culminated succesfully on " + realDateEnd);
+            Utils.print("Enter the real date of the beginning of the closing stage");
             realDateBegin = Utils.input.next();
-            print("The active stage is now the closing stage");
+            Utils.print("The active stage is now the closing stage");
         } else if (this.stage == 5){
             setStage(6);
             setStageActivation(6);
-            print("The closing stage was culminated succesfully on " + realDateEnd);
-            print("Enter the real date of the beginning of the follow up and control stage");
+            Utils.print("The closing stage was culminated succesfully on " + realDateEnd);
+            Utils.print("Enter the real date of the beginning of the follow up and control stage");
             realDateBegin = Utils.input.next();
-            print("The active stage is now the follow up and control stage");
+            Utils.print("The active stage is now the follow up and control stage");
         } else if (this.stage == 6){
-            print("The follow up and control stage was culminated succesfully on " + realDateEnd);
-            print("The project has been culminated succesfully");
+            Utils.print("The follow up and control stage was culminated succesfully on " + realDateEnd);
+            Utils.print("The project has been culminated succesfully");
         } else {
-            print("The stage entered is not valid");
+            Utils.print("The stage entered is not valid");
         }
     }
 
@@ -125,9 +117,9 @@ public class Projects {
     public void regCapsule(int positionArray, String proyectName, int stage, String type, String identifier, String description, String collaboratorName, String collaboratorPost, String situation, String status){
 
         // Make an array of stages that contains an array of capsules
-        Capsules [][] Capsules = new Capsules [6][50];
-        Capsules[positionArray][stage] = new Capsules(stage, type, identifier, description, collaboratorName, situation,status);
-        print("The capsule has been registered succesfully, in the project " + proyectName + " in the stage " + stage + "and is ready to be aproved");
+        
+        Capsules[stage][positionArray] = new Capsules(stage, type, identifier, description, collaboratorName, situation,status);
+        Utils.print("The capsule has been registered succesfully, in the project " + proyectName + " in the stage " + stage + " and is ready to be aproved");
     }
 
     /*
@@ -135,14 +127,18 @@ public class Projects {
      * @param identifier is the identifier of the capsule
      */
     public void aproveCapsule(String identifier, String aprovationDate){
-        for (int i = 0; i < capsule.length; i++){
-            if (capsule[i].getIdentifier().equals(identifier)){
-                capsule[i].setStatus("Aproved");
-                print("The capsule has been aproved succesfully" +" with the url " + "www.capsule.com/" + capsule[i].getIdentifier() + ".html  on " + aprovationDate);
-            } else {
-                print("The capsule has not been found");
+    for (int s = 0; s < 6; s++){
+        for (int i = 0; i < 50; i++){
+            if (Capsules[s][i]!=null){
+                if (Capsules[s][i].getIdentifier().equals(identifier)){
+                    Capsules[s][i].setStatus("Aproved");
+                    Utils.print("The capsule has been aproved succesfully on" + aprovationDate);
+                } else {
+                    Utils.print("The capsule has not been found");
+                }
             }
         }
+    }
     }
 
     /*
@@ -150,41 +146,45 @@ public class Projects {
      * @param identifier is the identifier of the capsule
      */
     public void publishCapsule(String identifier){
-        for (int i = 0; i < capsule.length; i++){
-            if (capsule[i].getIdentifier().equals(identifier)){
-                if (capsule[i].getStatus().equals("Aproved")){
-                    capsule[i].setStatus("Published");
-                    print("The capsule has been published succesfully");
+        for (int s = 0; s < 6; s++){
+            for (int i = 0; i < 50; i++){
+                if (Capsules[s][i]!=null){
+                    if (Capsules[s][i].getIdentifier().equals(identifier)){
+                        if (Capsules[s][i].getStatus().equals("Aproved")){
+                            Capsules[s][i].setStatus("Published");
+                            Utils.print("The capsule has been published succesfully with the url: www.capsule.com/" + Capsules[s][i].getIdentifier() + ".html");
+                         } else {
+                            Utils.print("The capsule has not been aproved yet");
+                         }
                 } else {
-                    print("The capsule has not been aproved yet");
+                    Utils.print("The capsule has not been found");
                 }
-            } else {
-                print("The capsule has not been found");
+            }
             }
         }
     }
 
     public void getClientManagerNames(){
         for (int i = 0; i < clientManagerNames.length; i++){
-            print(clientManagerNames[i]);
+            Utils.print(clientManagerNames[i]);
         }
     }
 
     public void getClientManagerPhones(){
         for (int i = 0; i < clientManagerPhones.length; i++){
-            print(clientManagerPhones [i]);
+            Utils.print(clientManagerPhones [i]);
         }
     }
 
     public void getCompanyManagerNames(){
         for (int i = 0; i < companyManagerNames.length; i++){
-            print(companyManagerNames[i]);
+            Utils.print(companyManagerNames[i]);
         }
     }
 
     public void getCompanyManagerPhones(){
         for (int i = 0; i < companyManagerPhones.length; i++){
-            print(companyManagerPhones[i]);
+            Utils.print(companyManagerPhones[i]);
         }
     }
 
