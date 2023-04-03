@@ -117,6 +117,15 @@ public class GreenSQASystem {
                     projectWithMostCapsules();
                     break;
 
+                case 9:
+                    // Check if there is any existing proyect to search a collaborator
+                    if (greenController[0] == null){
+                        Utils.print("There are no proyects to search a collaborator");
+                        break;
+                    }
+                    searchIfCollaboratorCapsules();
+                    break;
+
                 default:
                     Utils.print("Please enter a valid option");
                     break;
@@ -255,16 +264,30 @@ public class GreenSQASystem {
             Green.capsuleTypeCounterPerProject(proyectName, projectCounter);
         }
 
+        /*
+         * This method asks the user for the stage of wich he wants to see the lessons learned in all the projects, then it calls the method lessonsLearnedList from the Green class
+        */
         public static void lessonsLearnedList(){
             Utils.print("Please enter the stage of wich you want to see the lessons learned in all the projects");
             int stage = Utils.validateStageInput();
             Green.lessonsLearnedList(stage, projectCounter);
         }
 
+        /*
+         * This method directly calls the method projectWithMostCapsules from the Green class
+         */
         public static void projectWithMostCapsules(){
             Green.projectWithMostCapsules(projectCounter);
         }
 
+        /*
+         * This method asks the user for the name of the collaborator, then it calls the method searchIfCollaboratorCapsules from the Green class
+         */
+        public static void searchIfCollaboratorCapsules(){
+            Utils.print("Please enter the name of the collaborator");
+            String collaboratorName = Utils.input.next();
+            Green.searchIfCollaboratorCapsules(collaboratorName, projectCounter);
+        }
     }
 
 

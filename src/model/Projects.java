@@ -219,6 +219,24 @@ public class Projects {
         return numberOfCapsules;
     }
 
+
+    /*
+     * This method searches if a collaborator has capsules in a project and prints a message if it has
+     * @param collaboratorName is the name of the collaborator
+     * @param projectName is the name of the project
+     */
+    public void searchIfCollaboratorCapsules(String collaboratorName, String projectName){
+        for (int s = 0; s < 6; s++){
+            for (int i = 0; i < 50; i++){
+                if (Capsules[s][i]!=null){
+                    if (Capsules[s][i].getCollaboratorName().equals(collaboratorName)){
+                        Utils.print("The collaborator " + collaboratorName + " has a capsule in the project " +projectName+ " in the stage " +stage);
+                    }
+                }
+            }
+        }
+    }
+
     public void getClientManagerNames(){
         for (int i = 0; i < clientManagerNames.length; i++){
             Utils.print(clientManagerNames[i]);

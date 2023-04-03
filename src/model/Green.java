@@ -150,6 +150,10 @@ public class Green {
         }
     }
 
+    /*
+     * This method finds the project with the most capsules created by calling the getNumberOfCapsules method from the Projects class for each project created
+     * @param projectCounter number of projects created
+     */
     public static void projectWithMostCapsules(int projectCounter){
         int[] capsulesPerProject = new int[projectCounter];
         for (int i = 0; i <= projectCounter; i++) {
@@ -164,6 +168,18 @@ public class Green {
             }
         }
         Utils.print("The project with the most capsules is " +projectController[position].getName()+ " with " +max+ " capsules");
+    }
+
+    /*
+     * This method calls the searchIfCollaboratorCapsules method from the Projects class for each project created
+     * @param collaboratorName name of the collaborator
+     * @param projectCounter number of projects created
+     */
+    public static void searchIfCollaboratorCapsules(String collaboratorName, int projectCounter){
+        for (int i = 0; i <= projectCounter; i++) {
+            String projectName=projectController[i].getName();
+            projectController[i].searchIfCollaboratorCapsules(collaboratorName, projectName );
+        }
     }
 
     public String getName() {
