@@ -125,6 +125,16 @@ public class Green {
         }
     }
 
+    public static void capsuleTypeCounterPerProject(String proyectName, int projectCounter){
+        for (int i = 0; i <= projectCounter; i++) {
+            if (projectController[i].getName().equals(proyectName)){
+                projectController[i].capsuleTypeCounterPerProject();
+                break;
+            }
+        }
+    }
+
+
     public String getName() {
         return name;
     }

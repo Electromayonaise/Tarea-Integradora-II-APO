@@ -115,9 +115,7 @@ public class Projects {
      * @param status is the status of the capsule
      */
     public void regCapsule(int positionArray, String proyectName, int stage, String type, String identifier, String description, String collaboratorName, String collaboratorPost, String situation, String status){
-
         // Make an array of stages that contains an array of capsules
-        
         Capsules[stage][positionArray] = new Capsules(stage, type, identifier, description, collaboratorName, situation,status);
         Utils.print("The capsule has been registered succesfully, in the project " + proyectName + " in the stage " + stage + " and is ready to be aproved");
     }
@@ -163,6 +161,33 @@ public class Projects {
             }
         }
     }
+
+    public void capsuleTypeCounterPerProject(){
+        int tecnicalCounter = 0;
+        int managementCounter = 0;
+        int domainCounter = 0;
+        int experiencesCounter = 0;
+        for (int s = 0; s < 6; s++){
+            for (int i = 0; i < 50; i++){
+                if (Capsules[s][i]!=null){
+                    if (Capsules[s][i].getType().equals("TECNICAL")){
+                        tecnicalCounter++;
+                    } else if (Capsules[s][i].getType().equals("MANAGEMENT")){
+                        managementCounter++;
+                    } else if (Capsules[s][i].getType().equals("DOMAIN")){
+                        domainCounter++;
+                    } else if (Capsules[s][i].getType().equals("EXPERIENCES")){
+                        experiencesCounter++;
+                    }
+                }
+            }
+        }
+        Utils.print("The number of capsules of type tecnical is: " + tecnicalCounter);
+        Utils.print("The number of capsules of type management is: " + managementCounter);
+        Utils.print("The number of capsules of type domain is: " + domainCounter);
+        Utils.print("The number of capsules of type experiences is: " + experiencesCounter);
+    }
+
 
     public void getClientManagerNames(){
         for (int i = 0; i < clientManagerNames.length; i++){

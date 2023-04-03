@@ -89,13 +89,21 @@ public class GreenSQASystem {
                     }
                     capsulePublishing();
                     break;
-        
+
+                case 6:
+                    // Check if there is any existing proyect to count the number of capsules
+                    if (greenController[0] == null){
+                        Utils.print("There are no proyects to count the number of capsules");
+                        break;
+                    }
+                    capsuleTypeCounterPerProject();
+                    break;
                 default:
                     Utils.print("Please enter a valid option");
                     break;
             }
     
-        } while (option != 6);
+        } while (option != 11);
     }
     /*
      * This method contains the menu of the program
@@ -103,11 +111,16 @@ public class GreenSQASystem {
         public static void menu (){
             Utils.print("Welcome to the GreenSQA system, please select the option you want to use");
             Utils.print("1. Create a proyect");
-            Utils.print("2. Culminate a stage of a proyect");
+            Utils.print("2. Culminate a stage of a project");
             Utils.print("3. Register a capsule");
             Utils.print("4. Aprove a capsule");
             Utils.print("5. Publish a capsule");
-            Utils.print("6. Exit");
+            Utils.print("6. How many capsules of each type are registered on a project");
+            Utils.print("7. Create a list of lessons learned from all the projects in a particular stage");
+            Utils.print("8. What is the project with the most capsules registered");
+            Utils.print("9. Search if a determined collaborator has registered a capsule in any project");
+            Utils.print("10. Situations and lessons learned from published capsules by inputing a search string");
+            Utils.print("11. Exit");
         }
 
     /*
@@ -174,7 +187,7 @@ public class GreenSQASystem {
             int stage = Utils.validateStageInput();
             Green.stageValidation(proyectName, stage, projectCounter);
             Utils.print("Please enter the type of capsule (tecnical, managment, domain, or experiences)");
-            String type = Utils.input.next();
+            String type = Utils.validateCapsuleType();
             Utils.print("Please enter a unique identifier");
             String identifier = Utils.input.next();
             Utils.print("Please enter a description of the capsule");
@@ -194,12 +207,12 @@ public class GreenSQASystem {
          */
         public static void capsuleAprobation(){
             Utils.print("Please enter the name of the proyect");
-                    proyectName = Utils.input.next();
-                    Utils.print("Please enter the unique identifier of the capsule that you want to aprove");
-                    String identifier = Utils.input.next();
-                    // Give the identifier to the method aproveCapsule in the class Proyects
-                    String aprovationDate = new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
-                    Green.aproveCapsule(proyectName, identifier, aprovationDate, projectCounter);
+            proyectName = Utils.input.next();
+            Utils.print("Please enter the unique identifier of the capsule that you want to aprove");
+            String identifier = Utils.input.next();
+            // Give the identifier to the method aproveCapsule in the class Proyects
+            String aprovationDate = new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
+            Green.aproveCapsule(proyectName, identifier, aprovationDate, projectCounter);
         }
 
         /*
@@ -212,6 +225,15 @@ public class GreenSQASystem {
             String identifier = Utils.input.next();
             // Give the identifier to the method publishCapsule in the class green if the capsule is aproved
             Green.publishCapsule(proyectName,identifier, projectCounter);
+        }
+
+        /*
+         * This method asks the user for the name of the project, then ir calls the method capsuleTypeCounterPerProject from the Green class
+         */
+        public static void capsuleTypeCounterPerProject(){
+            Utils.print("Please enter the name of the proyect");
+            proyectName = Utils.input.next();
+            Green.capsuleTypeCounterPerProject(proyectName, projectCounter);
         }
 
 
