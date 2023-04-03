@@ -98,6 +98,25 @@ public class GreenSQASystem {
                     }
                     capsuleTypeCounterPerProject();
                     break;
+                
+                case 7:
+                    // Check if there is any existing proyect to create a list of lessons learned
+                    if (greenController[0] == null){
+                        Utils.print("There are no proyects to create a list of lessons learned");
+                        break;
+                    }
+                    lessonsLearnedList();
+                    break;
+                
+                case 8:
+                    // Check if there is any existing proyect to inform the proyect with the most capsules
+                    if (greenController[0] == null){
+                        Utils.print("There are no proyects to inform the proyect with the most capsules");
+                        break;
+                    }
+                    projectWithMostCapsules();
+                    break;
+
                 default:
                     Utils.print("Please enter a valid option");
                     break;
@@ -236,8 +255,21 @@ public class GreenSQASystem {
             Green.capsuleTypeCounterPerProject(proyectName, projectCounter);
         }
 
+        public static void lessonsLearnedList(){
+            Utils.print("Please enter the stage of wich you want to see the lessons learned in all the projects");
+            int stage = Utils.validateStageInput();
+            Green.lessonsLearnedList(stage, projectCounter);
+        }
+
+        public static void projectWithMostCapsules(){
+            Green.projectWithMostCapsules(projectCounter);
+        }
 
     }
+
+
+
+
 
 
 

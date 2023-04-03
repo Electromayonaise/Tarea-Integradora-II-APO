@@ -22,7 +22,7 @@ public class Utils {
     public static String validateHashtag(){
         // Check if the input has a initial # and final #
         String hashtag = input.next();
-        while (hashtag.indexOf("#") != hashtag.lastIndexOf("#")) {
+        while (hashtag.indexOf("#") == hashtag.lastIndexOf("#")) {
             print("Enter a valid hashtag");
             hashtag = input.next();
         }
@@ -73,7 +73,7 @@ public class Utils {
         // Check if the input is a valid capsule type (tecnical, managment, domain, or experiences)
         String capsuleType = input.next();
         capsuleType = capsuleType.toUpperCase();
-        while (!capsuleType.equals("TECNICAL") || !capsuleType.equals("MANAGEMENT") || !capsuleType.equals("DOMAIN") || !capsuleType.equals("EXPERIENCES")) {
+        while (!capsuleType.equals("TECNICAL") && !capsuleType.equals("MANAGEMENT") && !capsuleType.equals("DOMAIN") && !capsuleType.equals("EXPERIENCES")) {
             print("Enter a valid capsule type");
             capsuleType = input.next();
             capsuleType = capsuleType.toUpperCase();

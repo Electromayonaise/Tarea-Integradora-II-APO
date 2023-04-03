@@ -162,6 +162,10 @@ public class Projects {
         }
     }
 
+
+    /*
+     * This method is used to count the number of capsules of each type in a project
+     */
     public void capsuleTypeCounterPerProject(){
         int tecnicalCounter = 0;
         int managementCounter = 0;
@@ -188,6 +192,32 @@ public class Projects {
         Utils.print("The number of capsules of type experiences is: " + experiencesCounter);
     }
 
+    /*
+     * This method is used to get the situation of the capsules of a project in a stage
+     * @param stage is the stage where the capsules will be searched
+     */
+    public void lessonsLearnedList(int stage){
+        for (int i = 0; i < 50; i++){
+            if (Capsules[stage][i]!=null){
+            Utils.print(Capsules[stage][i].getSituation());
+            }
+        }
+    }
+
+    /*
+     * This method is used to get the number of capsules of a project
+    */
+    public int getNumberOfCapsules(){
+        int numberOfCapsules = 0;
+        for (int s = 0; s < 6; s++){
+            for (int i = 0; i < 50; i++){
+                if (Capsules[s][i]!=null){
+                    numberOfCapsules++;
+                }
+            }
+        }
+        return numberOfCapsules;
+    }
 
     public void getClientManagerNames(){
         for (int i = 0; i < clientManagerNames.length; i++){

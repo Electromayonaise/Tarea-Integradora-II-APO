@@ -125,6 +125,11 @@ public class Green {
         }
     }
 
+    /*
+     * Method that calls the capsule type counter method from the Projects class after it finds the project
+     * @param proyectName name of the project
+     * @param projectCounter number of projects created
+     */
     public static void capsuleTypeCounterPerProject(String proyectName, int projectCounter){
         for (int i = 0; i <= projectCounter; i++) {
             if (projectController[i].getName().equals(proyectName)){
@@ -134,6 +139,32 @@ public class Green {
         }
     }
 
+    /*
+     * Method that calls the capsule lessons learned method from the Projects class for each project created
+     * @param stage stage of which the user wishes to know lessons of
+     * @param projectCounter number of projects created
+     */
+    public static void lessonsLearnedList(int stage, int projectCounter){
+        for (int i = 0; i <= projectCounter; i++) {
+            projectController[i].lessonsLearnedList(stage);
+        }
+    }
+
+    public static void projectWithMostCapsules(int projectCounter){
+        int[] capsulesPerProject = new int[projectCounter];
+        for (int i = 0; i <= projectCounter; i++) {
+            capsulesPerProject[i] = projectController[i].getNumberOfCapsules();
+        }
+        int max = capsulesPerProject[0];
+        int position = 0;
+        for (int i = 0; i < capsulesPerProject.length; i++) {
+            if (capsulesPerProject[i] > max){
+                max = capsulesPerProject[i];
+                position = i;
+            }
+        }
+        Utils.print("The project with the most capsules is " +projectController[position].getName()+ " with " +max+ " capsules");
+    }
 
     public String getName() {
         return name;
