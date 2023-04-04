@@ -62,15 +62,16 @@ public class Green {
      * @param stage stage to validate
      * @param projectCounter number of projects created
      */
-    public static void stageValidation(String proyectName, int stage, int projectCounter){
+    public static int stageValidation(String proyectName, int stage, int projectCounter){
         for (int i = 0; i <= projectCounter; i++) {
             if (projectController[i].getName().equals(proyectName)){
-                if (projectController[i].getStage() < stage){
+                while (projectController[i].getStage() < stage){
                     Utils.print("The stage must be the current stage or a previous stage");
-                    break;
+                    stage = Utils.input.nextInt();
                 }
             }
         }
+        return stage;
     }
 
     /*
@@ -179,6 +180,18 @@ public class Green {
         for (int i = 0; i <= projectCounter; i++) {
             String projectName=projectController[i].getName();
             projectController[i].searchIfCollaboratorCapsules(collaboratorName, projectName );
+        }
+    }
+
+    /*
+     * This method calls the searchByString method from the Projects class for each project created
+     * @param searchString string to search
+     * @param projectCounter number of projects created
+     */
+    public static void searchByString(String searchString, int projectCounter){
+        for (int i = 0; i <= projectCounter; i++) {
+            String projectName=projectController[i].getName();
+            projectController[i].searchByString(searchString, projectName);
         }
     }
 

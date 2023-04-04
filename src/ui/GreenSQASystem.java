@@ -125,7 +125,15 @@ public class GreenSQASystem {
                     }
                     searchIfCollaboratorCapsules();
                     break;
-
+                
+                case 10:
+                    // Check if there is any existing proyect to inform the situations and lessons learned from published capsules
+                    if (greenController[0] == null){
+                        Utils.print("There are no proyects to inform the situations and lessons learned from published capsules");
+                        break;
+                    }
+                    searchByString();
+                    break;
                 default:
                     Utils.print("Please enter a valid option");
                     break;
@@ -277,7 +285,11 @@ public class GreenSQASystem {
          * This method directly calls the method projectWithMostCapsules from the Green class
          */
         public static void projectWithMostCapsules(){
-            Green.projectWithMostCapsules(projectCounter);
+            if (projectCounter==0){
+                Utils.print("There is only one project, so it is the one with the most capsules, with the name " + greenController[0].getName());
+            } else {
+                Green.projectWithMostCapsules(projectCounter);
+            }
         }
 
         /*
@@ -287,6 +299,15 @@ public class GreenSQASystem {
             Utils.print("Please enter the name of the collaborator");
             String collaboratorName = Utils.input.next();
             Green.searchIfCollaboratorCapsules(collaboratorName, projectCounter);
+        }
+
+        /*
+         * This method asks the user for the keywords to be searched, then sends the inputed string to the method searchByString from the Green class
+         */
+        public static void searchByString(){
+            Utils.print("Please enter the search string, by including keywords");
+            String searchString = Utils.input.next();
+            Green.searchByString(searchString, projectCounter);
         }
     }
 

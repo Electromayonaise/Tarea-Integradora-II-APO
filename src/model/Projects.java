@@ -237,6 +237,23 @@ public class Projects {
         }
     }
 
+    /*
+     * This method searches if the inputed search string is contained in any capsule, if it is, it prints a message
+     * @param searchString is the string that will be searched
+     * @param projectName is the name of the project
+     */
+    public void searchByString(String searchString, String projectName){
+        for (int s=0; s<6; s++){
+            for (int i=0; i<50; i++){
+                if (Capsules[s][i]!=null){
+                    if (Capsules[s][i].getSituation().contains(searchString)){
+                        Utils.print("Found coincidence on project : " + projectName +" on the capsule with the identifier : " + Capsules[s][i].getIdentifier() + " Coincidence on :"+ "´" + Capsules[s][i].getSituation() + "´") ;
+                    }
+                }
+            }
+        }
+    }
+
     public void getClientManagerNames(){
         for (int i = 0; i < clientManagerNames.length; i++){
             Utils.print(clientManagerNames[i]);
