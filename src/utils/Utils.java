@@ -8,7 +8,7 @@ public class Utils {
 
     public static Scanner input = new Scanner(System.in);
 
-    /*
+    /**
      * Method that prints the given object
      * @param a object to be printed
      */
@@ -16,7 +16,7 @@ public class Utils {
         System.out.println(a);
     }
 
-    /*
+    /**
      * Method that validates the inputed String contains a hashtag
      */
     public static String validateHashtag(){
@@ -29,7 +29,7 @@ public class Utils {
         return hashtag;
     }
 
-    /*
+    /**
      * Method that validates the inputed value is an integer
      */
     public static int validateIntInput() {
@@ -41,8 +41,9 @@ public class Utils {
         return input.nextInt();
       }
     
-    /*
+    /**
      * Method that validates the inputed value is a double
+     * @return the inputed value
      */
     public static double validateDoubleInput() {
         // Check if the input is a double
@@ -53,8 +54,9 @@ public class Utils {
         return input.nextDouble();
       }
 
-    /*
+    /**
      * Method that validates the inputed value is a valid stage
+     * @return the stage
      */
     public static int validateStageInput(){
         // Check if the input is a valid stage
@@ -66,8 +68,9 @@ public class Utils {
         return stage;
     }
 
-    /*
+    /**
      * Method that validates the inputed value is a valid capsule type
+     * @return the capsule type
      */
     public static String validateCapsuleType(){
         // Check if the input is a valid capsule type (tecnical, managment, domain, or experiences)

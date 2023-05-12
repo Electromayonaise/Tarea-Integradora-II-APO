@@ -22,7 +22,7 @@ public class Projects {
     Capsules [][] Capsules = new Capsules [6][50];
 
     
-    /*
+    /**
      * This method is the constructor of the class Proyects
      * @param name is the name of the project
      * @param client is the name of the client
@@ -52,7 +52,7 @@ public class Projects {
         Utils.print("The project " + name + " has been created");
     }
 
-    /*
+    /**
      * This method is used to culminate a stage of the project and to activate the next stage
      * @param realDateEnd is the real date when the stage ended
      */
@@ -101,7 +101,7 @@ public class Projects {
         }
     }
 
-    /*
+    /**
      * This method is used to register a capsule in a stage of a project
      * @param positionArray is the position of the project in the array of projects
      * @param proyectName is the name of the project
@@ -120,7 +120,7 @@ public class Projects {
         Utils.print("The capsule has been registered succesfully, in the project " + proyectName + " in the stage " + stage + " and is ready to be aproved");
     }
 
-    /*
+    /**
      * This method is used to approve a capsule
      * @param identifier is the identifier of the capsule
      */
@@ -139,7 +139,7 @@ public class Projects {
     }
     }
 
-    /*
+    /**
      * This method is used to publish a capsule
      * @param identifier is the identifier of the capsule
      */
@@ -163,7 +163,7 @@ public class Projects {
     }
 
 
-    /*
+    /**
      * This method is used to count the number of capsules of each type in a project
      */
     public void capsuleTypeCounterPerProject(){
@@ -192,7 +192,7 @@ public class Projects {
         Utils.print("The number of capsules of type experiences is: " + experiencesCounter);
     }
 
-    /*
+    /**
      * This method is used to get the situation of the capsules of a project in a stage
      * @param stage is the stage where the capsules will be searched
      */
@@ -204,7 +204,7 @@ public class Projects {
         }
     }
 
-    /*
+    /**
      * This method is used to get the number of capsules of a project
     */
     public int getNumberOfCapsules(){
@@ -220,7 +220,7 @@ public class Projects {
     }
 
 
-    /*
+    /**
      * This method searches if a collaborator has capsules in a project and prints a message if it has
      * @param collaboratorName is the name of the collaborator
      * @param projectName is the name of the project
@@ -237,7 +237,7 @@ public class Projects {
         }
     }
 
-    /*
+    /**
      * This method searches if the inputed search string is contained in any capsule, if it is, it prints a message
      * @param searchString is the string that will be searched
      * @param projectName is the name of the project

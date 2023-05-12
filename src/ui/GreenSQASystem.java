@@ -10,13 +10,13 @@ import java.util.Calendar;
 import utils.Utils;
 
 
-/*  
+/**
  * This class is the main class of the program, it contains the main method and the menu of the program
  */
 public class GreenSQASystem {
 
     private static String proyectName = "";
-    /* 
+    /**
      * This method abreviates the System.out.println() to print()
      * @param a is the object that will be printed
     */
@@ -29,7 +29,7 @@ public class GreenSQASystem {
 
     private static String answer = "";
 
-    /*
+    /**
      * This is the main method of the program, it contains the menu switch and the options of the menu
     */
     public static void main (String [] args){
@@ -141,7 +141,7 @@ public class GreenSQASystem {
     
         } while (option != 11);
     }
-    /*
+    /**
      * This method contains the menu of the program
      */
         public static void menu (){
@@ -159,7 +159,7 @@ public class GreenSQASystem {
             Utils.print("11. Exit");
         }
 
-    /*
+    /**
      * This method creates a proyect, it asks the user for the name of the proyect, the name of the client, the date planed for the beginning of the proyect, the date planed for the end of the proyect, 
      * the value of the budget, and the name and corresponding phone number of the proyect managers from boath sides (client and company). When the proyect is created by calling the Green constructor
      *  it asks the user wether he wants to create another proyect or not
@@ -200,7 +200,7 @@ public class GreenSQASystem {
             } while (answer.equals("Y")||projectCounter==10);
         }
 
-        /*
+        /**
          * This method culminates a stage of a proyect, it asks the user for the name of the proyect, the stage that he wants to culminate, the real date for the end
          * of the stage is set to the current date. Then it calls the method stageCulmination from the Green class
          */
@@ -211,7 +211,7 @@ public class GreenSQASystem {
             Green.stageCulmination(proyectName, realDateEnd, projectCounter); 
         }
 
-        /*
+        /**
          * This method registers a capsule, it asks the user for the name of the proyect, the stage in which the capsule will be registered, the type of capsule (tecnical, managment, domain, or experiences),
          * a unique identifier, a description of the capsule, the name of the collaborator who registered the capsule, the date of the capsule, and the situation and lesson learned from the capsule
          * the inputed text on the lesson must have the keywords between hashtags (#) 
@@ -238,7 +238,7 @@ public class GreenSQASystem {
             Green.registerCapsule(proyectName, stage, type, identifier, description, collaboratorName, collaboratorPost, situation, status, projectCounter);
         }
 
-        /*
+        /**
          * This method aproves a capsule, it asks the user for the name of the proyect and the unique identifier of the capsule that he wants to aprove, the date of the aproval is set to the current date
          */
         public static void capsuleAprobation(){
@@ -251,7 +251,7 @@ public class GreenSQASystem {
             Green.aproveCapsule(proyectName, identifier, aprovationDate, projectCounter);
         }
 
-        /*
+        /**
          * This method publishes a capsule, it asks the user for the name of the proyect and the unique identifier of the capsule that he wants to publish
          */
         public static void capsulePublishing(){
@@ -263,7 +263,7 @@ public class GreenSQASystem {
             Green.publishCapsule(proyectName,identifier, projectCounter);
         }
 
-        /*
+        /**
          * This method asks the user for the name of the project, then ir calls the method capsuleTypeCounterPerProject from the Green class
          */
         public static void capsuleTypeCounterPerProject(){
@@ -272,7 +272,7 @@ public class GreenSQASystem {
             Green.capsuleTypeCounterPerProject(proyectName, projectCounter);
         }
 
-        /*
+        /**
          * This method asks the user for the stage of wich he wants to see the lessons learned in all the projects, then it calls the method lessonsLearnedList from the Green class
         */
         public static void lessonsLearnedList(){
@@ -281,7 +281,7 @@ public class GreenSQASystem {
             Green.lessonsLearnedList(stage, projectCounter);
         }
 
-        /*
+        /**
          * This method directly calls the method projectWithMostCapsules from the Green class
          */
         public static void projectWithMostCapsules(){
@@ -292,7 +292,7 @@ public class GreenSQASystem {
             }
         }
 
-        /*
+        /**
          * This method asks the user for the name of the collaborator, then it calls the method searchIfCollaboratorCapsules from the Green class
          */
         public static void searchIfCollaboratorCapsules(){
@@ -301,7 +301,7 @@ public class GreenSQASystem {
             Green.searchIfCollaboratorCapsules(collaboratorName, projectCounter);
         }
 
-        /*
+        /**
          * This method asks the user for the keywords to be searched, then sends the inputed string to the method searchByString from the Green class
          */
         public static void searchByString(){

@@ -6,7 +6,7 @@ public class Green {
     private String name; 
     private static Projects[] projectController= new Projects [10] ; // Proyects class array
 
-    /*
+    /**
      * Constructor for the Green class that creates a new project by calling the constructor of the Projects class
      * @param clientManagers number of managers from the client side
      * @param companyManagers number of managers from the company side
@@ -41,7 +41,7 @@ public class Green {
         
     }
 
-    /*
+    /**
      * Method that calls the stage culmination method from the Projects class after it finds the project
      * @param proyectName name of the project
      * @param realDateEnd real date when the project ended
@@ -56,7 +56,7 @@ public class Green {
     }
 
 
-    /*
+    /**
      * Method that validates the given stage is the current stage or a previous stage
      * @param proyectName name of the project
      * @param stage stage to validate
@@ -74,7 +74,7 @@ public class Green {
         return stage;
     }
 
-    /*
+    /**
      * Method that calls the register capsule method from the Projects class after it finds the project
      * @param proyectName name of the project
      * @param stage stage of the capsule
@@ -95,7 +95,7 @@ public class Green {
         }
     }
 
-    /*
+    /**
      * Method that calls the approve capsule method from the Projects class after it finds the project
      * @param proyectName name of the project
      * @param identifier identifier of the capsule
@@ -111,7 +111,7 @@ public class Green {
         }
     }
 
-    /*
+    /**
      * Method that calls the publish capsule method from the Projects class after it finds the project
      * @param proyectName name of the project
      * @param identifier identifier of the capsule
@@ -126,7 +126,7 @@ public class Green {
         }
     }
 
-    /*
+    /**
      * Method that calls the capsule type counter method from the Projects class after it finds the project
      * @param proyectName name of the project
      * @param projectCounter number of projects created
@@ -140,7 +140,7 @@ public class Green {
         }
     }
 
-    /*
+    /**
      * Method that calls the capsule lessons learned method from the Projects class for each project created
      * @param stage stage of which the user wishes to know lessons of
      * @param projectCounter number of projects created
@@ -151,7 +151,7 @@ public class Green {
         }
     }
 
-    /*
+    /**
      * This method finds the project with the most capsules created by calling the getNumberOfCapsules method from the Projects class for each project created
      * @param projectCounter number of projects created
      */
@@ -171,7 +171,7 @@ public class Green {
         Utils.print("The project with the most capsules is " +projectController[position].getName()+ " with " +max+ " capsules");
     }
 
-    /*
+    /**
      * This method calls the searchIfCollaboratorCapsules method from the Projects class for each project created
      * @param collaboratorName name of the collaborator
      * @param projectCounter number of projects created
@@ -183,7 +183,7 @@ public class Green {
         }
     }
 
-    /*
+    /**
      * This method calls the searchByString method from the Projects class for each project created
      * @param searchString string to search
      * @param projectCounter number of projects created
